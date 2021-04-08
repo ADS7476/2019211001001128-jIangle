@@ -8,11 +8,11 @@
     <br/>
     <a href="hello">Student Info Servlet-week2</a>
     <br/>
-    <a href="life">Life cycle Servlet-week3</a>
+    <a href="Life">Life cycle Servlet-week3</a>
     <br/>
     <a href="register.jsp">Register-getParameter-week3</a>
     <br/>
-    <a href="config">Config parameter-week4</a>
+    <a href="Config">Config parameter-week4</a>
     <br/>
     <a href="register.jsp">Register JDBC -week4</a>
     <br/>

@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
         //only one connection
         //String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
         //String url="jdbc:sqlserver://localhost:1433;DatabaseName=userdb";
-        //String username="sa";
+        //String username="jl1";
         //String password="123456";
         //code like this is bad way --because change in not easy
         //for example change password of db = change in java code
@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet {
         try {
             if(!rs.next()){
                 writer.println("Login Success!!!");
-                writer.println("Welcome ChenLiang");
+                writer.println("Welcome jiangle");
 
             }
             else
