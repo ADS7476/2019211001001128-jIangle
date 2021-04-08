@@ -12,7 +12,7 @@ import java.sql.*;
         urlPatterns = {"jdbc"},
         initParams = {
                 @WebInitParam(name="driver", value = "com.microsoft.sqlserver.jdbc.SQLServerDriver"),
-                @WebInitParam(name="url", value = "jdbc:sqlserver ://localhost ; databaseName=db;"),
+                @WebInitParam(name="url", value = "jdbc:sqlserver://localhost:1433;databaseName=db;"),
                 @WebInitParam(name="username", value = "jl1"),
                 @WebInitParam(name="password", value = "123456" )
         },
@@ -60,7 +60,6 @@ public class JDBCDemoServlet extends HttpServlet {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
 
     }
 

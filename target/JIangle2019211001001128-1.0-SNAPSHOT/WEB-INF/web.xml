@@ -19,6 +19,23 @@
     <servlet>
         <servlet-name>JDBCDemoServlet</servlet-name>
         <servlet-class>com.jiangle.week4.demo.JDBCDemoServlet</servlet-class>
+        <init-param>
+            <param-name>driver</param-name>
+            <param-value>com.microsoft.sqlserver.jdbc.SQLServerDriver</param-value>
+        </init-param>
+        <init-param>
+            <param-name>url</param-name>
+            <param-value>jdbc:sqlserver://localhost:1433;databaseName=db;</param-value>
+        </init-param>
+        <init-param>
+            <param-name>username</param-name>
+            <param-value>jl1</param-value>
+        </init-param>
+        <init-param>
+            <param-name>password</param-name>
+            <param-value>123456</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>anyName</servlet-name>
@@ -39,4 +56,5 @@
     <!--x=5.a=x so we can say a=5
     so /hello==com.jiangle.week2.demo.HelloWorldServLet
     -->
+
 </web-app>
