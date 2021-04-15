@@ -1,4 +1,4 @@
-package com.week5.demo;
+package com.jiangle.week5.demo;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
@@ -53,25 +53,34 @@ public class LoginServlet extends HttpServlet {
 
         String username=request.getParameter("username");
         String password=request.getParameter("password");
-        String sql_1="select * from [user]"+
-                "WHERE username='"+username+"'"+" AND "+
-                "password = '"+password+"'"+
-                ';';
+        String sql="select * from [user]"+ "WHERE username='"+username+"'"+" AND "+ "password = '"+password+"'"+ ';';
         ResultSet rs= null;
         try {
-            rs = con.createStatement().executeQuery(sql_1);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            rs = con.createStatement().executeQuery(sql);
+            if (rs.next()){
+                //out.print("Login successful!!! ");
+                //out.print("Welcome "+username) ;
+                request.setAttribute("id" , rs.getInt("id"));
+                request.setAttribute("username"),rs.getString("username")
+                request.setAttribute("password" , rs.getString("password"));
+                request.setAttribute("email" , rs.getString( "email"));
+                request.setAttribute("gender " , rs.getString("gender "));
+                request.setAttribute("birthDate " , rs.getString("binthdate"));
+                //forward to user info jsp
+                request.getRequestDispatcher("userList.jsp").forward(request, response);}
+            else{
+                //writer.print("Username or password Error! ! ! ");
+                request.setAttribute( "message" ,"Username or Password Error!! ! ");
+                request.getRequestDispatcher("login.jsp" ).forward(request , response);
+
+            } catch (SQLException Throwable) {
+            Throwable.printStackTrace();
         }
         try {
-            if(!rs.next()){
-                writer.println("Login Success!!!");
-                writer.println("Welcome jiangle");
-
+            if(rs.next()){
             }
             else
             {
-                writer.println("密码或用户名错误");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

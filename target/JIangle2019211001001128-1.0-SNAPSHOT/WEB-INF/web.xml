@@ -39,7 +39,7 @@
     </servlet>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>com.jiangle.week5.demo.LoginServlet</servlet-class>
+        <servlet-class>com.week5.demo.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>anyName</servlet-name>
