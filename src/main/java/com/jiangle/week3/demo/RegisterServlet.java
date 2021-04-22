@@ -8,8 +8,8 @@ import java.sql.*;
 
 
 @WebServLet(urLPatterns = {"/register"}, LoadOnStartup = 1)
+
 public class RegisterServLet extends HttpServlet {
-    @Override
     Connection con = null;
     public void init() throws ServletException {
         super.init();

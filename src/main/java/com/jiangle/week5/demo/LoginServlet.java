@@ -1,5 +1,8 @@
 package com.jiangle.week5.demo;
 
+import com.jiangle.dao.UserDao;
+import com.jiangle.model.User;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -12,39 +15,39 @@ import java.sql.SQLException;
 
 @WebServlet(name = "LoginServlet",value = "/login")
 public class LoginServlet extends HttpServlet {
-    Connection con = null; //class variable
-
+    Connection con=null; //class variable
     @Override
     public void init() throws ServletException {
         super.init();
+        con=(Connection) getServletContext().getAttribute("con");
         //only one connection
         //String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
         //String url="jdbc:sqlserver://localhost:1433;DatabaseName=userdb";
-        //String username="jl1";
+        //String username="sa";
         //String password="123456";
         //code like this is bad way --because change in not easy
         //for example change password of db = change in java code
 
         //get servletconfig --> getInitParameters --no change
-        String driver = getServletContext().getInitParameter("driver");
-        String url = getServletContext().getInitParameter("url");
-        String username = getServletContext().getInitParameter("username");
-        String password = getServletContext().getInitParameter("password");
+       /* String driver= getServletContext().getInitParameter("driver");
+        String url= getServletContext().getInitParameter("url");
+        String username= getServletContext().getInitParameter("username");
+        String password= getServletContext().getInitParameter("password");
 
 
         try {
             Class.forName(driver);
-            con = DriverManager.getConnection(url, username, password);
-            System.out.println("init()-->" + con); //ok(use java code) -ok (use config in web.xml) -ok --use(@webservlet)
+            con= DriverManager.getConnection(url,username,password);
+            System.out.println("init()-->"+con); //ok(use java code) -ok (use config in web.xml) -ok --use(@webservlet)
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        }
+        }*/
 
     }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request,response);
+        request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);
     }
 
     @Override
@@ -53,35 +56,60 @@ public class LoginServlet extends HttpServlet {
 
         PrintWriter writer = response.getWriter();
 
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String sql = "select * from [user]" + "WHERE username='" + username + "'" + " AND " + "password = '" + password + "'" + ';';
-        ResultSet rs = null;
+        String username=request.getParameter("username");
+        String password=request.getParameter("password");
+
+        UserDao userDao=new UserDao();
         try {
-            rs = con.createStatement().executeQuery(sql);
-            if (rs.next()) {
-                //out.print("Login successful!!! ");
-                //out.print("Welcome "+username) ;
-                request.setAttribute("id", rs.getInt("id"));
-                request.setAttribute("username", rs.getString("username"));
-                request.setAttribute("password", rs.getString("password"));
-                request.setAttribute("email", rs.getString("email"));
-                request.setAttribute("gender ", rs.getString("gender "));
-                request.setAttribute("birthDate ", rs.getString("binthdate"));
-                //forward to user info jsp
-                request.getRequestDispatcher("userList.jsp").forward(request, response);
-            } else {
-                //writer.print("Username or password Error! ! ! ");
-                request.setAttribute("message", "Username or Password Error!! ! ");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+            User user= userDao.findByUsernamePassword(con,username,password);
+
+            if (user!=null){
+                request.setAttribute("user",user);
+                request.getRequestDispatcher("WEB-INF/views/userinfo.jsp").forward(request,response);
+
+            }else {
+                request.setAttribute("message","Username or Password Error");
+//               request.setAttribute("message","Username or Password Error");
+                request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);
             }
-            try {
-                if (rs.next()) {
-                } else {
-                }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
+
+
+        /*String sql_1="select * from [user] "+
+                "WHERE username='"+username+"'"+" AND "+
+                "password = '"+password+"'"+
+                ';';
+        //System.out.println(sql_1);
+        ResultSet rs= null;
+        try {
+            rs = con.createStatement().executeQuery(sql_1);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        try {
+            if(rs.next()){
+                request.setAttribute("ID",rs.getString("id"));
+                request.setAttribute("Username",rs.getString("username"));
+                request.setAttribute("Password",rs.getString("password"));
+                request.setAttribute("Email",rs.getString("email"));
+                request.setAttribute("Sex",rs.getString("sex"));
+                request.setAttribute("Birthday",rs.getString("birthday"));
+                request.getRequestDispatcher("./userinfo.jsp").forward(request,response);
+                *//*writer.println("Login Success!!!");
+                writer.println("Welcome ChenLiang");*//*
+
+            }
+            else
+            {
+                request.setAttribute("msg","l");
+                request.getRequestDispatcher("./login.jsp").forward(request,response);
+               // writer.println("密码或用户名错误");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }*/
     }
 }
