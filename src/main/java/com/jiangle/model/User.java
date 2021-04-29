@@ -1,5 +1,7 @@
 package com.jiangle.model;
 
+import java.sql.Date;
+
 public class User {
     private int id;
     private String username;
@@ -7,6 +9,7 @@ public class User {
     private String email;
     private String gender;
     private java.util.Date birthDate;
+    private String sex;
 
     @Override
     public String toString() {
@@ -17,18 +20,19 @@ public class User {
     public User() {
     }
 
-    public User(int id, String username, String password, String email, String gender, java.util.Date birthDate) {
+    public User(int id, String username, String password, String email, String gender,String sex, java.util.Date birthDate) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.gender = gender;
+        this.sex = sex;
         this.birthDate = birthDate;
     }
     public int getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
     public String getUsername() {
@@ -53,6 +57,13 @@ public class User {
     public String getGender() {
         return gender;
     }
+    public String getSex() {
+        return sex;
+    }
+    public void setSex(String sex) {
+
+        this.sex = sex;
+    }
     public java.util.Date getBirthDate() {
         return birthDate;
     }
@@ -61,5 +72,14 @@ public class User {
     }
 
     public void setGender(String gender) {
+    }
+
+
+    public void setBirthday(Date birthday) {
+    }
+
+
+    public Date getBirthday() {
+        return null;
     }
 }

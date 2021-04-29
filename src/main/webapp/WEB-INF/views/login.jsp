@@ -16,12 +16,31 @@
             <h1>Login</h1>
             <%
                 if(!(request.getAttribute("message")==null)){
-                    out.print("<h3>"+request.getAttribute("message")+"</h3>")
+                    out.print("<h3>"+request.getAttribute("message")+"</h3>");
                 }
             %>
-            username:<input required="required" type="text" name="Username" placeholder="name"><br/>
-            password:<input required="required" type="password" name="password" placeholder="password" minlength="8"><br/>
-            <input required="required" type="submit" value="Login"/>
+            <%
+                Cookie [] allCookies=request.getCookies();
+                String username="",password="",rememberMeVale="";
+                if(allCookies!=null){
+                    for(Cookie c:allCookies){
+                        if(c.getName().equals("cUsername")){
+                            username=c.getValue();
+                        }
+                        if(c.getName().equals("cPassword")){
+                            password=c.getValue();
+                        }
+                        if(c.getName().equals("cRememberMe")){
+                            rememberMeVale=c.getValue();
+                        }
+                    }
+                }
+
+            %>
+            Username:<input type="text" name="username" value="<%=username%>"><br/>
+            Password:<input type="password" name="password" value="<%=password%>"><br/>
+            <input type="checkbox" name="RememberMe" value="1" <%=rememberMeVale.equals("1") ?"checked":""%>checked/>RememberMe<br/>
+            <input type="submit" value="submit"/>
         </form>
         <%@include file="footer.jsp"%>
     </body>
