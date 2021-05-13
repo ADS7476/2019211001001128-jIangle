@@ -39,7 +39,7 @@
     </servlet>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>com.week5.demo.LoginServlet</servlet-class>
+        <servlet-class>com.jiangle.week5.demo.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>anyName</servlet-name>
@@ -64,5 +64,7 @@
     <!--x=5.a=x so we can say a=5
     so /hello==com.jiangle.week2.demo.HelloWorldServLet
     -->
-
+    <welcome-file-list>
+        <welcome-file>home</welcome-file>
+    </welcome-file-list>
 </web-app>

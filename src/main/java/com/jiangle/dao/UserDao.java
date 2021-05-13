@@ -23,7 +23,7 @@ public class UserDao implements IUserDao{
         ResultSet rs = st.executeQuery();
         if(rs.next()){
             user = new User();
-            user.setId(rs.getInt("id"));
+            user.setId(rs.getString("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
@@ -39,11 +39,11 @@ public class UserDao implements IUserDao{
     public int deleteUser(Connection con, User user) throws SQLException {
         String sql="delete from user where id=?";
         PreparedStatement st=con.prepareStatement(sql);
-        st.setInt(1,user.getId());
+        st.setString(1,user.getId());
         ResultSet rs=st.executeQuery();
         if(rs.next()){
             user = new User();
-            user.setId(rs.getInt("id"));
+            user.setId(rs.getString("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
@@ -65,7 +65,7 @@ public class UserDao implements IUserDao{
         st.setString(3, user.getEmail());
         st.setString(4, user.getSex());
         st.setDate(5, user.getBirthday());
-        st.setInt(6, user.getId());
+        st.setString(6, user.getId());
         System.out.println(st);
 
         return st.executeUpdate();
@@ -81,7 +81,7 @@ public class UserDao implements IUserDao{
         if(rs.next())
         {
             user = new User();
-            user.setId(rs.getInt("id"));
+            user.setId(rs.getString("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
@@ -110,7 +110,7 @@ public class UserDao implements IUserDao{
         User user=null;
         if(rs.next()){
             user=new User();
-            user.setId(rs.getInt("id"));
+            user.setId(rs.getString("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
@@ -132,7 +132,7 @@ public class UserDao implements IUserDao{
         User user=null;
         if(rs.next()){
             user = new User();
-            user.setId(rs.getInt("id"));
+            user.setId(rs.getString("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
@@ -152,7 +152,7 @@ public class UserDao implements IUserDao{
         User user=null;
         if(rs.next()){
             user = new User();
-            user.setId(rs.getInt("id"));
+            user.setId(rs.getString("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
@@ -171,7 +171,7 @@ public class UserDao implements IUserDao{
         User user=null;
         if(rs.next()){
             user = new User();
-            user.setId(rs.getInt("id"));
+            user.setId(rs.getString("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
@@ -192,7 +192,7 @@ public class UserDao implements IUserDao{
         User user=null;
         if(rs.next()){
             user = new User();
-            user.setId(rs.getInt("id"));
+            user.setId(rs.getString("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
@@ -213,7 +213,7 @@ public class UserDao implements IUserDao{
         User user=null;
         if(rs.next()){
             user = new User();
-            user.setId(rs.getInt("id"));
+            user.setId(rs.getString("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));
@@ -233,7 +233,7 @@ public class UserDao implements IUserDao{
         User user=null;
         if(rs.next()){
             user = new User();
-            user.setId(rs.getInt("id"));
+            user.setId(rs.getString("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setEmail(rs.getString("email"));

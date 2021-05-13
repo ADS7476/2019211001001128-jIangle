@@ -3,7 +3,7 @@ package com.jiangle.model;
 import java.sql.Date;
 
 public class User {
-    private int id;
+    private String id;
     private String username;
     private String password;
     private String email;
@@ -20,7 +20,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String username, String password, String email, String gender,String sex, java.util.Date birthDate) {
+    public User(String id, String username, String password, String email, String gender,String sex, java.util.Date birthDate) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -29,7 +29,7 @@ public class User {
         this.sex = sex;
         this.birthDate = birthDate;
     }
-    public int getId() {
+    public String getId() {
         return id;
     }
     public void setId(String id) {

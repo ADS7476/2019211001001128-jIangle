@@ -55,7 +55,10 @@ public class RegisterServlet extends HttpServlet {
         try {
             Class.forName(driver);
             con= DriverManager.getConnection(url,username,password);
-            System.out.println("init()-->"+con); /(use java code) -ok (use config in web.xml) -ok --use(@webservlet)
+            System.out.println("init()-->"+con);
+            /(use java code)
+            -ok (use config in web.xml)
+            -ok --use(@webservlet)
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }*/
@@ -63,7 +66,7 @@ public class RegisterServlet extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("WEB-INF/views/register.jsp").forward(request,response);
     }
 
     @Override
@@ -76,8 +79,8 @@ public class RegisterServlet extends HttpServlet {
         String username = request.getParameter("Username");//name of input type -<input type="text" name = "username"/><br/>
         String password = request.getParameter("password");
         String email = request.getParameter("email");
-        String sex = request.getParameter("sex");
-        String birthday = request.getParameter("birthday");
+        String gender = request.getParameter("gender");
+        String birthDate = request.getParameter("birthDate");
         PreparedStatement pstmt = null; //调用javaSQL包的PreparedStatement来存储待运行的SQL语句
         try {
             pstmt = con.prepareStatement(sql);
@@ -85,15 +88,15 @@ public class RegisterServlet extends HttpServlet {
             pstmt.setString(2, username);
             pstmt.setString(3, password);
             pstmt.setString(4, email);
-            pstmt.setString(5, sex);
-            pstmt.setString(6, birthday);
+            pstmt.setString(5, gender);
+            pstmt.setString(6, birthDate);
 
 
             pstmt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        response.sendRedirect("./login.jsp");
+        response.sendRedirect("login");
     }
     //    @Override
 //    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
