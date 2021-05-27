@@ -2,7 +2,7 @@ package com.jiangle.dao;
 
 import com.jiangle.model.Product;
 
-import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -55,5 +55,5 @@ public interface IProductDao {
 	 * Select all product by name like
 	 * @return List of product
 	 */
-	public List<Product> getPicture(Integer productId, Connection con) throws SQLException;
+	public Blob getPicture(Integer productId, Connection con) throws SQLException;
 }

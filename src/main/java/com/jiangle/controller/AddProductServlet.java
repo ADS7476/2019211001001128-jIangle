@@ -29,7 +29,7 @@ public class AddProductServlet extends HttpServlet {
             List<Category> categoryList= Category.findAllCategory(con);
             request.setAttribute("categoryList",categoryList);
 
-            String path="/WEB-INF/views/admin/productionList.jsp";
+            String path="WEB-INF/views/admin/productionList.jsp";
             request.getRequestDispatcher(path).forward(request,response);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
