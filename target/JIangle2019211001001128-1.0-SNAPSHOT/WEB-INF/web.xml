@@ -72,6 +72,8 @@
         <filter-class>com.jiangle.filter.HelloFilter</filter-class></filter>
     <filter-mapping>
         <filter-name>HelloFilter</filter-name>
-        <url-pattern>/hello</url-pattern><!--filter is for servlet -</filter-mapping>
-
-</web-app>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+        <!--filter is for servlet
+        -->
+ </web-app>
